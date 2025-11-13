@@ -1,5 +1,9 @@
 services:
 
+  mi-servicio:
+    build:
+      context: .
+      
   snapdrop:
     image: linuxserver/snapdrop:version-b8b78cc2
     container_name: snapdrop
@@ -54,21 +58,21 @@ services:
       - portainer_data:/data
 
   duplicati:
-    image: lscr.io/linuxserver/duplicati:latest
-    container_name: duplicati
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Madrid
-      - SETTINGS_ENCRYPTION_KEY=holacaracola
-      - CLI_ARGS=
-      - DUPLICATI__WEBSERVICE_PASSWORD=micontraseña
-    volumes:
-      - ./duplicati:/config
-      - ./micarpetasegura:/source/micarpetasegura
-    ports:
-      - 8200:8200
-    restart: unless-stopped
+     image: lscr.io/linuxserver/duplicati:latest
+     container_name: duplicati
+     environment:
+       - PUID=1000
+       - PGID=1000
+       - TZ=Europe/Madrid
+       - SETTINGS_ENCRYPTION_KEY=holacaracola
+       - CLI_ARGS=
+       - DUPLICATI__WEBSERVICE_PASSWORD=micontraseña
+     volumes:
+       - ./duplicati:/config
+       - ./micarpetasegura:/source/micarpetasegura
+     ports:
+       - 8200:8200
+     restart: unless-stopped
 
 volumes:
   code_config:
